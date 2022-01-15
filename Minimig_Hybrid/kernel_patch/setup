@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+if [ -f /sys/kernel/config/device-tree/overlays/minimig/status ]; then
+	echo "Kernel module already installed"
+	exit 0
+fi
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+mount -t debugfs none /sys/kernel/debug
+insmod ${SCRIPT_DIR}/dtbocfg.ko
+mount -t configfs none /sys/kernel/config/
+OVERLAYNAME=minimig
+mkdir /sys/kernel/config/device-tree/overlays/$OVERLAYNAME
+./dtc -O dtb -o /lib/firmware/minimig.dtbo -@ -b 0 ${SCRIPT_DIR}/minimig.dts
+cp /lib/firmware/minimig.dtbo /sys/kernel/config/device-tree/overlays/$OVERLAYNAME/dtbo
+insmod ${SCRIPT_DIR}/minimig-irq.ko
+echo 1 > /sys/kernel/config/device-tree/overlays/$OVERLAYNAME/status

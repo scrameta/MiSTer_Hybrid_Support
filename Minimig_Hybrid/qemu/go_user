@@ -1,0 +1,1 @@
+LD_LIBRARY_PATH=./lib/arm-linux-gnueabihf/ ./lib/ld-linux-armhf.so.3 ./qemu-m68k $@

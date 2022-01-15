@@ -1,0 +1,8 @@
+#LD_LIBRARY_PATH=./qemu_system_test/libs/lib/arm-linux-gnueabihf/ ./qemu_system_test/libs/lib/ld-linux-armhf.so.3 ./qemu_system_test/qemu-system-m68k --machine mister_minimig --nographic  -d int -D qemu.log
+#LD_LIBRARY_PATH=./qemu_system_test/libs/lib/arm-linux-gnueabihf/ ./qemu_system_test/libs/lib/ld-linux-armhf.so.3 ./qemu_system_test/qemu-system-m68k --machine mister_minimig --nographic -D /tmp/qemu.log -singlestep 
+LD_LIBRARY_PATH=./qemu/libs/lib/arm-linux-gnueabihf/ exec ./qemu/libs/lib/ld-linux-armhf.so.3 ./qemu/qemu-system-m68k --machine mister_minimig --nographic -D /tmp/qemu.log -m 10M  -d int
+#LD_LIBRARY_PATH=./qemu_system_test/libs/lib/arm-linux-gnueabihf/ ./qemu_system_test/libs/lib/ld-linux-armhf.so.3 ./qemu_system_test/qemu-system-m68k --machine mister_minimig --nographic -d in_asm,out_asm,exec,nochain,int -D /tmp/qemu.log -m 10M -singlestep
+#PID=`ps -ef  | grep qemu_sys  | grep -v grep|cut -d' ' -f 2`
+#echo "PID:$PID"
+#chrt -r -p 20 $PID
+#taskset 1 -p $PID

@@ -1,0 +1,7 @@
+#!/bin/sh
+taskset -p 1 $$
+cd /media/fat/Minimig_Hybrid/kernel_patch
+./setup
+cd /media/fat/Minimig_Hybrid
+exec ./musashi_68020_mister
+
